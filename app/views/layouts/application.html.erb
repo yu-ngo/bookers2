@@ -13,22 +13,39 @@
   <body>
     <header>
       <% if user_signed_in? %>
-       <li>
-         <%= link_to 'Ho', books_path %>
-       </li>
-       <li>
-         <%= link_to 'マイページ', user_path(current_user.id) %>
-       </li>
-       <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-       </li>
+       <i class="fa-solid fa-house">
+          <%= link_to 'Home', user_path(current_user.id) %> 
+       </i>
+       
+       <i class="fa-solid fa-users">
+           <%= link_to 'users', users_path(current_user.id) %>
+       </i>
+       
+       <i class="fa-solid fa-book-open">
+          <%= link_to 'books', books_path(current_user.id) %>
+       </i>
+       
+        <i class="fa-solid fa-right-from-bracket">
+          <%= link_to "Log out", destroy_user_session_path, method: :delete %>  
+       </i>  
+      
       <% else %>
-       <li>
-         <%= link_to "新規投稿", new_user_registration_path %>
-       </li>
-       <li>
-         <%= link_to "Log in", new_user_session_path %>
-       </li>
+       <i class="fa-solid fa-house">
+          <%= link_to 'Home', root_path %> 
+       </i>
+       
+       <i class="fa-solid fa-link">
+          <%= link_to 'About', about_path %> 
+       </i>
+      
+       <i class="fa-solid fa-user-plus">
+          <%= link_to "Sign up", new_user_registration_path %> 
+       </i>
+      
+       <i class="fa-solid fa-right-to-bracket">
+          <%= link_to "Log in", new_user_session_path %> 
+       </i>  
+
       <% end %>
     </header>
     <%= yield %>

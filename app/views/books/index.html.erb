@@ -7,6 +7,11 @@
 <!--   <p>ユーザーネーム:<%#= book.user.name %></p>-->
 <!-- </div>-->
 <!--<%# end %>-->
+<h1>User info</h1>
+<%= image_tag 'no_image', size: "100x100" %>
+<p><h4>name</h4></p>
+<%#= book.user.name %>
+<p><h4>introduction</h4></p>
 
 <h1>New Book</h1>
 <%= form_with model: @book do |f| %>
@@ -25,12 +30,7 @@
 
 <table>
   
-  <thead>
-    <tr>
-     <th>Title</th>
-     <th>Opinion</th>
-   </tr>
-  </thead>
+  
   
   <tbody>
     <% @books.each do |book| %>
