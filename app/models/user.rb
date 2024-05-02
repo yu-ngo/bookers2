@@ -7,6 +7,8 @@ class User < ApplicationRecord
   
   has_one_attached :profile_image
   
+ 
+  
   
   def get_profile_image
     unless profile_image.attached?

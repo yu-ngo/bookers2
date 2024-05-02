@@ -6,48 +6,82 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script src="https://kit.fontawesome.com/40e6210ddb.js" crossorigin="anonymous"></script>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <% if user_signed_in? %>
-       <i class="fa-solid fa-house">
-          <%= link_to 'Home', user_path(current_user.id) %> 
-       </i>
-       
-       <i class="fa-solid fa-users">
-           <%= link_to 'users', users_path(current_user.id) %>
-       </i>
-       
-       <i class="fa-solid fa-book-open">
-          <%= link_to 'books', books_path(current_user.id) %>
-       </i>
-       
-        <i class="fa-solid fa-right-from-bracket">
-          <%= link_to "Log out", destroy_user_session_path, method: :delete %>  
-       </i>  
-      
-      <% else %>
-       <i class="fa-solid fa-house">
-          <%= link_to 'Home', root_path %> 
-       </i>
-       
-       <i class="fa-solid fa-link">
-          <%= link_to 'About', about_path %> 
-       </i>
-      
-       <i class="fa-solid fa-user-plus">
-          <%= link_to "Sign up", new_user_registration_path %> 
-       </i>
-      
-       <i class="fa-solid fa-right-to-bracket">
-          <%= link_to "Log in", new_user_session_path %> 
-       </i>  
+ <body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"><!--a-->
+     <div class="container"><!--b-->
+      <span><%= link_to 'Bookers', root_path %></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown"><!--d-->
+       <ul class="navbar-nav ml-auto"><!--c-->
 
-      <% end %>
-    </header>
+       <% if user_signed_in? %>
+        <li class="nav-item">
+         <%= link_to user_path(current_user.id), class: "nav-link text-light" do %>
+         <i class="fa-solid fa-house"></i>Home
+         <% end %>
+        </li>
+        
+        <li class="nav-item">
+         <%= link_to users_path(current_user.id), class: "nav-link text-light" do %>
+         <i class="fa-solid fa-users"></i>Users
+         <% end %>
+        </li>
+
+        <li class="nav-item">
+         <%= link_to books_path(current_user.id), class: "nav-link text-light" do %>
+         <i class="fa-solid fa-book-open"></i>Books
+         <% end %>
+        </li>
+
+        <li class="nav-item">
+         <%= link_to destroy_user_session_path, method: :delete %>
+         <i class="fa-solid fa-right-from-bracket"></i>Log out
+         <% end %>
+        </li>
+
+       <% else %>
+
+        <li class="nav-item">
+         <%= link_to root_path, class: "nav-link text-light" do %>
+         <i class="fa-solid fa-house"></i>Home
+         <% end %>
+        </li>
+
+        <li class="nav-item">
+         <%= link_to about_path, class: "nav-link text-light" do %>
+         <i class="fa-solid fa-link"></i>About
+         <% end %>
+        </li>
+
+        <li class="nav-item">
+         <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
+         <i class="fa-solid fa-user-plus"></i>Sign up
+         <% end %>
+        </li>
+        
+        <li class="nav-item">
+         <%= link_to new_user_session_path, class: "nav-link text-light" do %>
+         <i class="fa-solid fa-right-to-bracket"></i>Log in
+         <% end %>
+        </li>
+ 
+       <% end %>
+
+       </ul><!--c-->
+      </div><!--d-->
+     </div><!--b-->
+    </nav><!--a-->
+  </header>
     <%= yield %>
-  </body>
+ </body>
 </html>
+
+
+<!--a-->
