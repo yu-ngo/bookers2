@@ -5,6 +5,16 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
   end
   
+  def create
+    @user=User.new(user_params)
+    if @user.save
+      flash[:notice]="Welcome! You have signde up successfully."
+      redirect_to user_path(@user.id)
+    else
+      render :new
+    end
+  end
+  
   def index
     @user_new=User.new
     @users=User.all
