@@ -1,6 +1,6 @@
-<div class="container">
- <div class="row">
-  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+<div class="container"><!--a-->
+ <div class="row"><!--b-->
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto"><!--c-->
    <h1>Editing Book</h1>
    <%= form_with model: @book do |f| %>
    <div class="form-group">
@@ -16,9 +16,9 @@
    </div>
    <% end %>
    <%= link_to "Show", book_path %><span>|</span><%= link_to "Back", books_path %>
-  </div>
- </div>
-</div>
+  </div><!--c-->
+ </div><!--b-->
+</div><!--a-->
 
 <div class="container mt-5">
  <div class="row">

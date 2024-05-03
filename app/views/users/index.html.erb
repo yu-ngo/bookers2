@@ -8,7 +8,7 @@
         <p><h4>introduction　　<%= current_user.introduction %></h4></p>
       </div>
       <div class="row">
-        <%= link_to edit_user_path(current_user), class: "btn btn-danger" do %>
+        <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
       　 <i class="fa-solid fa-user-gear"></i>
         <% end %>
       </div>
@@ -29,7 +29,9 @@
           <%= f.submit 'Create Book', class: "btn btn-success" %>
       </div>
       <% end %>
-      <div class="col-md-8 offset-md-1">
+    </div><!--c-->
+      
+    <div class="col-md-8 offset-md-1"><!--d-->
         <h1>Users</h1>
       </div>
       <table class="table">
@@ -51,9 +53,9 @@
         <% end %>
         </tbody>
       </table>
-    </div><!--a-->
+    </div><!--d-->
   </div><!--b-->
-</div><!--c-->
+</div><!--a-->
 
 <div class="container mt-5">
   <div class="row">
