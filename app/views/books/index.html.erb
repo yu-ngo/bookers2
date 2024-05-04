@@ -6,7 +6,7 @@
    name<%= current_user.name %>
    introduction<%= current_user.introduction %>
    <div class="row">
-     <%= link_to edit_user_path, class: "btn btn-outline-secondary btn-block" do %>
+     <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fa-solid fa-user-gear"></i>
      <% end %> 
    </div>
@@ -67,13 +67,6 @@
  </div>
 </div>
 
- <div class='container mt-5'>
-  	<div class='row'>
-    	<div class='mx-auto'>
-    		<p>CopyRight Infratop.inc</p>
-    	</div>
-    </div>
- </div>
 
 
   
