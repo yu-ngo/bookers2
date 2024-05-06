@@ -1,20 +1,37 @@
+
+<% if @book_new.errors.any? %>
+ <%= @book_new.errors.count %> errors prohibited this obj from being saved:
+ <ul>
+  <% @book_new.errors.full_messages.each do |message| %>
+   <li><%= message %></li>
+  <% end %>
+ </ul>
+<% end %>
+
 <div class="container px-5 px-sm-0"><!--a-->
   <div class="row"><!--b-->
     <div class="col-md-3"><!--c-->
       <h2>User info</h2>
-       <div>
-        <%= image_tag current_user.get_profile_image %>
-        <p><h4>name　　<%= current_user.name %></h4></p>
-        <p><h4>introduction　　<%= current_user.introduction %></h4></p>
-      </div>
-      <div class="row">
+      <table class="table">
+        <tr><%= image_tag current_user.get_profile_image %></tr>
+        <tr>
+          <th>name</th>
+          <th><%= current_user.name %></th>
+        </tr>
+        <tr>
+          <th>introduction</th>
+          <th><%= current_user.introduction %></th>
+        </tr>
+      </table>
+
+      <div class="row"><!--d-->
         <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
       　 <i class="fa-solid fa-user-gear"></i>
         <% end %>
-      </div>
+      </div><!--d-->
       <h2 class="mt-3">New Book</h2>
 
-      <%= form_with model: @user_new do |f| %>
+      <%= form_with model: @book_new do |f| %>
       <div class="form-group">
           <h4>Title</h4>
           <%= f.text_field :title %>
@@ -30,10 +47,9 @@
       </div>
       <% end %>
     </div><!--c-->
-      
-    <div class="col-md-8 offset-md-1"><!--d-->
+
+    <div class="col-md-8 offset-md-1"><!--e-->
         <h1>Users</h1>
-      </div>
       <table class="table">
         <thead>
          <tr>
@@ -48,12 +64,12 @@
          <tr>
           <td><%= image_tag user.get_profile_image %></td>
           <td><%= user.name %></td>
-          <td><%= link_to "show", user_path(user) %></td>
+          <td><%= link_to "show", user_path(user.id) %></td>
          </tr>
         <% end %>
         </tbody>
       </table>
-    </div><!--d-->
+    </div><!--e-->
   </div><!--b-->
 </div><!--a-->
 
