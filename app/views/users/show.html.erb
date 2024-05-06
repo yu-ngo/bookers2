@@ -2,11 +2,12 @@
 <div>
  <%= flash[:notice] %>
 </div>
-<div class="container px-5 px-sm-0"
+
+<div class="container px-5 px-sm-0">
    <div class="row"><!--b-->
     <div class="col-md-3"><!--c-->
      <h2>User info</h2>
-     
+
      <table class="table">
       <tr><%= image_tag @user.get_profile_image %></tr>
       <tr>
@@ -18,32 +19,33 @@
        <th><%= @user.introduction %></th>
       </tr>
      </table>
-      
+
      <div class="row">
        <%= link_to edit_user_path, class: "btn btn-outline-secondary btn-block" do %>
      　 <i class="fa-solid fa-user-gear"></i>
-       <% end %>  
+       <% end %>
      </div>
-     <h2 class="mt-3">New Book</h2>
      
+     <h2 class="mt-3">New Book</h2>
+
      <%= form_with model: @book_new do |f| %>
      <div class="form-group">
        <h4>Title</h4>
-       <%= f.text_field :title %>
+       <%= f.text_field :title, class: "form-control book_title" %>
      </div>
-     
+
      <div class="form-group">
        <h4>Opinion</h4>
-       <%= f.text_area :body %>
+       <%= f.text_area :body, class: "form-control book_body" %>
      </div>
-     
+
       <div class="form-group">
        <%= f.submit 'Create Book', class: "btn btn-success" %>
       </div>
      <% end %>
     </div><!--c-->
-  
-  
+
+
     <div class="col-md-8 offset-md-1">
      <h2>Books</h2>
      <table class="table table-hover table-inverse">
@@ -55,9 +57,20 @@
            <th colspan="3"></th>
          </tr>
        </thead>
+        
+      <tbody>
+         <% @books.each do |book| %>
+        <tr>
+         <td><%= image_tag book.user.get_profile_image %></td>
+         <td><%= link_to book.title, book_path(book.id) %></td>
+         <td><%= book.body %></td>
+        </tr>
+       <% end %>
+       </tbody>
+       
      </table>
     </div>
-    
+
    </div><!--b-->
 </div><!--a-->
 

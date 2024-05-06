@@ -1,15 +1,31 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
 <div class="container"><!--a-->
  <div class="row"><!--b-->
   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto"><!--c-->
    <h1>Editing Book</h1>
+   
+   <div id="error_explanation">
+   <% if @book.errors.any? %>
+    <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
+    <ul>
+     <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+     <% end %>
+    </ul>
+   <% end %>
+   </div>
+
    <%= form_with model: @book do |f| %>
    <div class="form-group">
     <h4>Title</h4>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control book_title" %>
    </div>
    <div class="form-group">
     <h4>Opinion</h4>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, class: "form-control book_body" %>
    </div>
    <div class="form-group">
     <%= f.submit 'Update Book', class: "btn btn-success" %>

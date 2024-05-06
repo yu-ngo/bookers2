@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  
+
   def show
     @book_new=Book.new
     @user=User.find(params[:id])
+    @books=@user.books#特定のユーザーのbook情報を一覧で表示する。
   end
-  
+
   def create
     @user=User.new(user_params)
     if @user.save
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
       render :new
     end
   end
-  
+
   def index
     @book_new=Book.new
     @users=User.all
@@ -23,17 +24,21 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
   end
-  
+
   def update
-    user=User.find(params[:id])
-    user.update(user_params)
-    redirect_to user_path(user.id)
+    @user=User.find(params[:id])
+   if @user.update(user_params)
+    flash[:notice]="You have updated book successfully."
+    redirect_to user_path(@user.id)
+   else
+    render :edit
+   end
   end
-  
+
   private
-  
+
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
-  
+
  end

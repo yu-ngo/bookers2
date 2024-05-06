@@ -3,20 +3,31 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto"><!--c-->
       <h2>User info</h2>
       
+      <div id="error_explanation">
+       <% if @user.errors.any? %>
+        <h3><%= @user.errors.count %> errors prohibited this obj from being saved:</h3>
+       <ul>
+        <% @user.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+        <% end %>
+       </ul>
+      <% end %>
+      </div>
+      
       <%= form_with model: @user do |f| %>
       <div class="form-group">
           <label for="inputName">Name</label>
-          <%= f.text_field :name, autofocus: true, id:"inputName", placeholder: "名前" %>
+          <%= f.text_field :name, autofocus: true, id:"inputName", placeholder: "名前", class: "form-control name" %>
       </div>
       
       <div class="form-group">
           <label for="inputImage">Image</label>
-          <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %> 
+          <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*", class: "form-control-file user_image" %> 
       </div>
       
       <div class="form-group">
           <label for="inputIntroduction">Introduction</label>
-          <%= f.text_field :introduction, autofocus: true, id:"introduction", placeholder: "自己紹介文" %>
+          <%= f.text_field :introduction, autofocus: true, id:"introduction", placeholder: "自己紹介文", class: "form-control introduction" %>
       </div>
       
       <div class="form-group">
